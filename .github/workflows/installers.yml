@@ -1,4 +1,4 @@
-name: build bases
+name: build installers
 on:
   schedule:
     - cron: "0 0 * * 1"
@@ -6,16 +6,17 @@ on:
     branches:
       - main
     paths:
-      - base/**
+      - installers/**
 jobs:
   push:
-    name: "images:${{ matrix.bases }}"
+    name: "images:${{ matrix.installers }}"
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
-        bases:
+        installers:
           - debian
+          - debian-java
     steps:
       - uses: actions/checkout@v2
       - uses: docker/setup-buildx-action@v1
@@ -29,9 +30,9 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
       - uses: docker/build-push-action@v2
         with:
-          context: ./base/${{ matrix.bases }}
-          file: ./base/${{ matrix.bases }}/Dockerfile
+          context: ./base/${{ matrix.installers }}
+          file: ./base/${{ matrix.installers }}/Dockerfile
           platforms: linux/amd64
           push: true
           tags: |
-            ghcr.io/panszelescik/images:${{ matrix.bases }}
+            ghcr.io/panszelescik/images:${{ matrix.installers }}

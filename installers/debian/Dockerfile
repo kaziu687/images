@@ -20,7 +20,7 @@
 # SOFTWARE.
 #
 
-FROM        --platform=$BUILDPLATFORM adoptopenjdk/openjdk8:debianslim-jre
+FROM        --platform=$BUILDPLATFORM debian:stable-slim
 
 LABEL       author="PanSzelescik" maintainer="panszelescik@github.com"
 
@@ -28,14 +28,9 @@ LABEL       org.opencontainers.image.authors="PanSzelescik, Michael Parker"
 LABEL       org.opencontainers.image.source="https://github.com/PanSzelescik/images"
 LABEL       org.opencontainers.image.licenses=MIT
 
-RUN         apt update \
-                && apt upgrade -y \
-                && apt install -y --no-install-recommends ca-certificates curl fontconfig git openssl sqlite tar tzdata \
-			    && useradd -m -d /home/container -s /bin/bash container
+ENV         DEBIAN_FRONTEND=noninteractive
 
-USER        container
-ENV         USER=container HOME=/home/container
-WORKDIR     /home/container
-
-COPY        ../entrypoint.sh /entrypoint.sh
-CMD         [ "/bin/bash", "/entrypoint.sh" ]
+RUN         dpkg --add-architecture i386 \
+				&& apt update \
+				&& apt upgrade -y \
+				&& apt -y --no-install-recommends install ca-certificates curl lib32gcc1 libsdl2-2.0-0:i386 git
