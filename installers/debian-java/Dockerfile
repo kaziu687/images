@@ -20,7 +20,7 @@
 # SOFTWARE.
 #
 
-FROM --platform=$BUILDPLATFORM debian:stable
+FROM --platform=$BUILDPLATFORM debian:stable-slim
 
 LABEL author="PanSzelescik" maintainer="panszelescik@github.com"
 
@@ -117,9 +117,7 @@ RUN set -eux; \
 ENV JAVA_HOME=/opt/java/openjdk-16 \
     PATH="/opt/java/openjdk-16/bin:$PATH"
 
-RUN update-alternatives --install /usr/bin/java java /opt/java/openjdk/bin/java 100
+RUN update-alternatives --install /opt/java/openjdk/bin/java java /opt/java/openjdk/bin/java 100
 RUN update-alternatives --install /usr/bin/java16 java16 /opt/java/openjdk-16/bin/java 100
-RUN update-alternatives --install /usr/bin/javac javac /opt/java/openjdk/bin/javac 100
-RUN update-alternatives --install /usr/bin/javac16 javac16 /opt/java/openjdk-16/bin/javac 100
 RUN update-alternatives --install /usr/bin/jar jar /opt/java/openjdk/bin/jar 100
 RUN update-alternatives --install /usr/bin/jar16 jar16 /opt/java/openjdk-16/bin/jar 100
