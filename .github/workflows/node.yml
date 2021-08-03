@@ -17,7 +17,6 @@ jobs:
         tag:
           - 14
           - 16
-          - bot
     steps:
       - uses: actions/checkout@v2
       - uses: docker/setup-buildx-action@v1
