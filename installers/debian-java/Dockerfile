@@ -20,7 +20,7 @@
 # SOFTWARE.
 #
 
-FROM --platform=$BUILDPLATFORM debian:stable-slim
+FROM --platform=$BUILDPLATFORM debian:stable
 
 LABEL author="PanSzelescik" maintainer="panszelescik@github.com"
 
