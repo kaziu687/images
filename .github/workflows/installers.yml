@@ -16,7 +16,7 @@ jobs:
       matrix:
         installers:
           - debian
-          - debian-java
+          - debian_java
     steps:
       - uses: actions/checkout@v2
       - uses: docker/setup-buildx-action@v1
@@ -35,4 +35,4 @@ jobs:
           platforms: linux/amd64
           push: true
           tags: |
-            ghcr.io/panszelescik/images:${{ matrix.installers }}
+            ghcr.io/panszelescik/images:installer_${{ matrix.installers }}
