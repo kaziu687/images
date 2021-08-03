@@ -114,8 +114,5 @@ RUN set -eux; \
     tar -xf /tmp/openjdk-16.tar.gz --strip-components=1; \
     rm -rf /tmp/openjdk-16.tar.gz;
 
-ENV JAVA_HOME=/opt/java/openjdk-16 \
-    PATH="/opt/java/openjdk-16/bin:$PATH"
-
-RUN update-alternatives --install /usr/bin/java java /opt/java/openjdk/bin/java 100
-RUN update-alternatives --install /usr/bin/java16 java16 /opt/java/openjdk-16/bin/java 100
+RUN update-alternatives --install /usr/bin/java java /opt/java/openjdk/bin/java 100 \
+    && update-alternatives --install /usr/bin/java16 java16 /opt/java/openjdk-16/bin/java 100
