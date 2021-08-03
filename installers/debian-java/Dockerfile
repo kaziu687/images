@@ -119,5 +119,3 @@ ENV JAVA_HOME=/opt/java/openjdk-16 \
 
 RUN update-alternatives --install /usr/bin/java java /opt/java/openjdk/bin/java 100
 RUN update-alternatives --install /usr/bin/java16 java16 /opt/java/openjdk-16/bin/java 100
-RUN update-alternatives --install /usr/bin/jar jar /opt/java/openjdk/bin/jar 100
-RUN update-alternatives --install /usr/bin/jar16 jar16 /opt/java/openjdk-16/bin/jar 100
