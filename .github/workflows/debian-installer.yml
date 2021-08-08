@@ -1,4 +1,4 @@
-name: build installers
+name: Build Debian installers
 on:
   schedule:
     - cron: "0 0 * * 1"
