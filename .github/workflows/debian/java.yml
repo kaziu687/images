@@ -1,4 +1,4 @@
-name: build java
+name: build installers
 on:
   schedule:
     - cron: "0 0 * * 1"
@@ -6,10 +6,10 @@ on:
     branches:
       - main
     paths:
-      - java/**
+      - debian/java/**
 jobs:
   push:
-    name: "images:java_${{ matrix.tag }}"
+    name: "images:${{ matrix.tag }}"
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -34,9 +34,9 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
       - uses: docker/build-push-action@v2
         with:
-          context: ./java
-          file: ./java/${{ matrix.tag }}/Dockerfile
+          context: ./debian/java/${{ matrix.tag }}
+          file: ./debian/java/${{ matrix.tag }}/Dockerfile
           platforms: linux/amd64
           push: true
           tags: |
-            ghcr.io/panszelescik/images:java_${{ matrix.tag }}
+            ghcr.io/panszelescik/images:debian-java_${{ matrix.tag }}

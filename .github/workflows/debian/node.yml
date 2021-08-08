@@ -1,4 +1,4 @@
-name: build node
+name: build installers
 on:
   schedule:
     - cron: "0 0 * * 1"
@@ -6,10 +6,10 @@ on:
     branches:
       - main
     paths:
-      - node/**
+      - debian/node/**
 jobs:
   push:
-    name: "images:node_${{ matrix.tag }}"
+    name: "images:${{ matrix.tag }}"
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -30,9 +30,9 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
       - uses: docker/build-push-action@v2
         with:
-          context: ./node
-          file: ./node/${{ matrix.tag }}/Dockerfile
+          context: ./debian/node/${{ matrix.tag }}
+          file: ./debian/node/${{ matrix.tag }}/Dockerfile
           platforms: linux/amd64
           push: true
           tags: |
-            ghcr.io/panszelescik/images:node_${{ matrix.tag }}
+            ghcr.io/panszelescik/images:debian-node_${{ matrix.tag }}
