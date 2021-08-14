@@ -20,7 +20,7 @@
 # SOFTWARE.
 #
 
-FROM        --platform=$BUILDPLATFORM node:14-buster-slim
+FROM        --platform=$BUILDPLATFORM adoptopenjdk/openjdk9:debianslim-jre
 
 LABEL       author="PanSzelescik" maintainer="panszelescik@github.com"
 
@@ -30,12 +30,12 @@ LABEL       org.opencontainers.image.licenses=MIT
 
 RUN         apt update \
                 && apt upgrade -y \
-                && apt install -y --no-install-recommends ca-certificates curl git openssl sqlite tar tzdata \
-				&& useradd -m -d /home/container -s /bin/bash container
+                && apt install -y --no-install-recommends ca-certificates curl fontconfig git openssl sqlite tar tzdata \
+			    && useradd -m -d /home/container -s /bin/bash container
 
 USER        container
 ENV         USER=container HOME=/home/container
 WORKDIR     /home/container
 
-COPY        ./../entrypoint.sh /entrypoint.sh
+COPY        ../entrypoint.sh /entrypoint.sh
 CMD         [ "/bin/bash", "/entrypoint.sh" ]
