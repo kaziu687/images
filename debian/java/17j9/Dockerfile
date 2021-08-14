@@ -20,7 +20,7 @@
 # SOFTWARE.
 #
 
-FROM        --platform=$BUILDPLATFORM adoptopenjdk/openjdk10:debianslim-jre
+FROM        --platform=$BUILDPLATFORM adoptopenjdk/openjdk17-openj9:debianslim-jre
 
 LABEL       author="PanSzelescik" maintainer="panszelescik@github.com"
 
@@ -30,7 +30,7 @@ LABEL       org.opencontainers.image.licenses=MIT
 
 RUN         apt update \
                 && apt upgrade -y \
-                && apt install -y --no-install-recommends ca-certificates curl fontconfig git openssl sqlite tar tzdata \
+                && apt install -y --no-install-recommends ca-certificates curl fontconfig git libstdc++6 openssl sqlite tar tzdata \
 			    && useradd -m -d /home/container -s /bin/bash container
 
 USER        container

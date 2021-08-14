@@ -17,14 +17,8 @@ jobs:
         tag:
           - 8
           - 8j9
-          - 9
-          - 9j9
-          - 10
-          - 10j9
           - 11
           - 11j9
-          - 12
-          - 12j9
           - 13
           - 13j9
           - 14
@@ -33,6 +27,8 @@ jobs:
           - 15j9
           - 16
           - 16j9
+          - 17
+          - 17j9
     steps:
       - uses: actions/checkout@v2
       - uses: docker/setup-buildx-action@v1
