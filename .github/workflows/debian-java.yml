@@ -42,7 +42,7 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
       - uses: docker/build-push-action@v2
         with:
-          context: ./debian/java/${{ matrix.tag }}
+          context: ./debian/java
           file: ./debian/java/${{ matrix.tag }}/Dockerfile
           platforms: linux/amd64
           push: true
