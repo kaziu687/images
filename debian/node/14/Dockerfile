@@ -20,7 +20,7 @@
 # SOFTWARE.
 #
 
-FROM        --platform=$BUILDPLATFORM node:14-buster-slim
+FROM        --platform=$BUILDPLATFORM node:14-bullseye-slim
 
 LABEL       author="PanSzelescik" maintainer="panszelescik@github.com"
 
