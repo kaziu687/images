@@ -42,5 +42,5 @@ RUN dpkg --add-architecture i386 \
     && echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen \
     && locale-gen en_US.UTF-8
 
-RUN update-alternatives --install /usr/bin/java java /opt/java/openjdk/bin/java 100 \
+RUN update-alternatives --install /usr/bin/java java /opt/java/openjdk8/bin/java 100 \
     && update-alternatives --install /usr/bin/java16 java16 /opt/java/openjdk16/bin/java 100
