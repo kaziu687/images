@@ -22,7 +22,7 @@
 
 FROM --platform=$BUILDPLATFORM adoptopenjdk/openjdk8:debianslim-jre AS java8
 FROM --platform=$BUILDPLATFORM adoptopenjdk/openjdk16:debianslim-jre AS java16
-FROM --platform=$BUILDPLATFORM debian:stable-slim
+FROM --platform=$BUILDPLATFORM debian:bullseye-slim
 
 LABEL author="PanSzelescik" maintainer="panszelescik@github.com"
 
@@ -38,7 +38,7 @@ COPY --from=java16 /opt/java/openjdk /opt/java/openjdk16
 RUN dpkg --add-architecture i386 \
     && apt update \
     && apt upgrade -y \
-    && apt -y --no-install-recommends install ca-certificates curl fontconfig lib32gcc-s1 libsdl2-2.0-0:i386 locales git tzdata jq bzip \
+    && apt -y --no-install-recommends install ca-certificates curl fontconfig lib32gcc-s1 libsdl2-2.0-0:i386 locales git tzdata jq bzip2 \
     && echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen \
     && locale-gen en_US.UTF-8
 
