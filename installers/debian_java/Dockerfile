@@ -38,7 +38,7 @@ COPY --from=java16 /opt/java/openjdk /opt/java/openjdk16
 RUN dpkg --add-architecture i386 \
     && apt update \
     && apt upgrade -y \
-    && apt -y --no-install-recommends install ca-certificates curl fontconfig lib32gcc-s1 libsdl2-2.0-0:i386 locales git tzdata jq bzip2 unzip \
+    && apt -y --no-install-recommends install ca-certificates curl fontconfig lib32gcc-s1 libsdl2-2.0-0:i386 locales git tzdata jq bzip2 unzip libxml2-utils tar dos2unix \
     && echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen \
     && locale-gen en_US.UTF-8
 
