@@ -1,5 +1,6 @@
 FROM        --platform=$BUILDPLATFORM ghcr.io/pterodactyl/yolks:java_11
 
+USER        root
 RUN         apt update \
             && apt -y --no-install-recommends install cron
 
