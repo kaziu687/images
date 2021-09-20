@@ -1,7 +1,7 @@
 FROM        --platform=$BUILDPLATFORM ghcr.io/pterodactyl/yolks:java_16
 
 RUN         apt update \
-            && apt install cron
+            && apt -y --no-install-recommends install cron
 
 USER        container
 ENV         USER=container HOME=/home/container
