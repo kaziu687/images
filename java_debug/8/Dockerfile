@@ -7,7 +7,7 @@ LABEL       org.opencontainers.image.source="https://github.com/PanSzelescik/ima
 LABEL       org.opencontainers.image.licenses=MIT
 
 RUN 		apt-get update -y \
- 			&& apt-get install -y curl ca-certificates openssl git tar sqlite fontconfig tzdata iproute2 libstdc++6 ps \
+ 			&& apt-get install -y curl ca-certificates openssl git tar sqlite fontconfig tzdata iproute2 libstdc++6 procps \
  			&& useradd -d /home/container -m container
 
 COPY        ./../cron_executor.sh /utils/cron_executor.sh
