@@ -10,9 +10,6 @@ RUN         chmod 0755 /utils/cron_executor.sh
 COPY        ./../cron_script.sh /etc/cron.d/cron_script.sh
 RUN         chmod 0755 /etc/cron.d/cron_script.sh
 
-RUN         crontab /etc/cron.d/cron_script.sh \
-            && cron
-
 USER        container
 ENV         USER=container HOME=/home/container
 WORKDIR     /home/container
