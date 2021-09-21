@@ -2,9 +2,9 @@
 mkdir -p /home/container/stall-reports
 
 sleep 60
-jcmd
+jcmd > /home/container/test.txt
 pid=$(jcmd | grep "[0-9] java *" | awk '{print $1}')
-echo pid
+echo $pid
 
 if [ -z ${pid+x} ]; then
   echo "PID unset!"
