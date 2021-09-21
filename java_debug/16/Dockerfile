@@ -8,5 +8,11 @@ USER        container
 ENV         USER=container HOME=/home/container
 WORKDIR     /home/container
 
+COPY        ../cron_script.sh /etc/cron.d/cron_script
+COPY        ../cron_executor.sh /utils/cron_executor.sh
+RUN         chmod 0644 /etc/cron.d/crontab_script \
+            && crontab /etc/cron.d/crontab_script \
+            && chmod 0744 /utils/cron_executor.sh
+
 COPY        ./../entrypoint.sh /entrypoint.sh
 CMD         [ "/bin/bash", "/entrypoint.sh" ]
