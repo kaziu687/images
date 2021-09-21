@@ -48,6 +48,7 @@ printf "\033[1m\033[33m[BedrockHost.pl - debug]: \033[0m%s\n" "$PARSED"
 
 if [ ! -f "${SERVER_JARFILE}" ]; then
     printf "\033[1m\033[31m[BedrockHost.pl - debug]: Plik %s nie istnieje - nie można uruchomić serwera\n" "$SERVER_JARFILE"
+    exit 1
 fi
 
 /utils/./thread_printer.sh &
