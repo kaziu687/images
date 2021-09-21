@@ -10,8 +10,8 @@ RUN 		apt-get update -y \
  			&& apt-get install -y curl ca-certificates openssl git tar sqlite fontconfig tzdata iproute2 libstdc++6 procps \
  			&& useradd -d /home/container -m container
 
-COPY        ./../cron_executor.sh /utils/cron_executor.sh
-RUN         chmod 0755 /utils/cron_executor.sh
+COPY        ../thread_printer.sh /utils/thread_printer.sh
+RUN         chmod 0755 /utils/thread_printer.sh
 
 USER        container
 ENV         USER=container HOME=/home/container
