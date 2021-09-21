@@ -2,7 +2,7 @@ FROM        --platform=$BUILDPLATFORM ghcr.io/pterodactyl/yolks:java_11
 
 USER        root
 RUN         apt update \
-            && apt -y --no-install-recommends install cron sudo
+            && apt -y --no-install-recommends install cron
 
 COPY        ./../cron_executor.sh /utils/cron_executor.sh
 RUN         chmod 0755 /utils/cron_executor.sh

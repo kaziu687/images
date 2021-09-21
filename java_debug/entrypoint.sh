@@ -33,8 +33,10 @@ export INTERNAL_IP
 # Switch to the container's working directory
 cd /home/container || exit 1
 
-sudo crontab /etc/cron.d/cron_script.sh
-sudo cron
+su root
+crontab /etc/cron.d/cron_script.sh
+cron
+su container
 
 # Print Java version
 printf "\033[1m\033[33mcontainer@pterodactyl~ \033[0mjava -version\n"
