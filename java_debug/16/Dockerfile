@@ -4,15 +4,15 @@ USER        root
 RUN         apt update \
             && apt -y --no-install-recommends install cron
 
+COPY        ./../cron_executor.sh /utils/cron_executor.sh
+RUN         chmod 0755 /utils/cron_executor.sh
+
+COPY        ./../cron_script.sh /etc/cron.d/cron_script.sh
+RUN         chmod 0755 /etc/cron.d/cron_script.sh
+
 USER        container
 ENV         USER=container HOME=/home/container
 WORKDIR     /home/container
-
-COPY        ./../cron_executor.sh /utils/cron_executor.sh
-RUN         chmod 0777 /utils/cron_executor.sh
-
-COPY        ./../cron_script.sh /utils/cron_script.sh
-RUN         chmod 0777 /utils/cron_script.sh
 
 COPY        ./../entrypoint.sh /entrypoint.sh
 CMD         [ "/bin/bash", "/entrypoint.sh" ]
