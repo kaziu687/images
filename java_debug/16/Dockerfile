@@ -1,4 +1,4 @@
-FROM        --platform=$BUILDPLATFORM openjdk:16-jdk-slim-bullseye
+FROM        --platform=$BUILDPLATFORM openjdk:16-jdk-slim-buster
 
 LABEL       author="PanSzelescik" maintainer="panszelescik@github.com"
 
