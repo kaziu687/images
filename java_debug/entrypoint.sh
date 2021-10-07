@@ -48,7 +48,11 @@ if [ ! -f "${SERVER_JARFILE}" ]; then
 fi
 
 # DEBUGGER
-/utils/./thread_printer.sh &
+if [[ ${IBC_CHECKBOX_INTERNAL_LOBBY} == "true" ]]; then
+    INTERNAL_LOBBY_PORT=$SERVER_PORT
+    SERVER_PORT=25565
+    /utils/./thread_printer.sh &
+fi
 # DEBUGGER
 
 # Display the command we're running in the output, and then execute it with the env
