@@ -59,7 +59,7 @@ if [[ ${IBC_CHECKBOX_INTERNAL_LOBBY} == "true" ]]; then
     cd /home/container/dodatkowe-lobby || exit 1
     curl -LSo flamecord.jar https://github.com/PanSzelescik/images/raw/main/java_test/flamecord.jar
 
-    INTERNAL_LOBBY_PORT=SERVER_PORT
+    INTERNAL_LOBBY_PORT=$SERVER_PORT
     SERVER_PORT=25565
 
     if [ ! -f /home/container/dodatkowe-lobby/config.yml ]; then
@@ -69,7 +69,8 @@ if [[ ${IBC_CHECKBOX_INTERNAL_LOBBY} == "true" ]]; then
         mv bh_config.yml config.yml
     fi
 
-    java -Xms128M -Xmx512M -jar flamecord.jar &
+    printf "\033[1m\033[33m[BedrockHost.pl - debug]: \033[0mUruchamianie AntiBota...\n"
+    java -Xms128M -Xmx512M -jar flamecord.jar &>/dev/null &
     cd /home/container || exit 1
 fi
 # ANTI-BOT
