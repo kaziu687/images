@@ -1,6 +1,7 @@
 #!/bin/bash
 
-INTERNAL_LOBBY_PORT=$SERVER_PORT
+#INTERNAL_LOBBY_PORT=$SERVER_PORT
+INTERNAL_LOBBY_PORT=35007
 
 while :
 do
@@ -32,6 +33,6 @@ do
         mv bh_config.yml config.yml
     fi
 
-    printf "\033[1m\033[33m[BedrockHost.pl - AntiBot]: \033[0mUruchamianie AntiBota...\n"
+    printf "\033[1m\033[33m[BedrockHost.pl - lobby]: \033[0mUruchamianie lokalnego lobby...\n"
     java -Xms128M -Xmx512M -jar flamecord.jar &>/dev/null
 done
