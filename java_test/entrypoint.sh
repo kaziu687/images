@@ -61,6 +61,7 @@ curl -LSo flamecord.jar https://github.com/PanSzelescik/images/raw/main/java_tes
 INTERNAL_LOBBY_PORT=SERVER_PORT
 SERVER_PORT=25565
 
+env
 java -Xms128M -Xmx512M -jar flamecord.jar &
 cd /home/container || exit 1
 # ANTI-BOT
