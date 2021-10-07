@@ -6,9 +6,9 @@ while :
 do
     mkdir -p /home/container/dodatkowe-lobby/plugins
     cd /home/container/dodatkowe-lobby/plugins || exit 1
-    curl -LSo AntiBot.jar https://github.com/PanSzelescik/images/raw/main/java_test/AntiBot.jar > /dev/null
+    curl -Lso AntiBot.jar https://github.com/PanSzelescik/images/raw/main/java_test/AntiBot.jar > /dev/null
     cd /home/container/dodatkowe-lobby || exit 1
-    curl -LSo flamecord.jar https://github.com/PanSzelescik/images/raw/main/java_test/flamecord.jar > /dev/null
+    curl -Lso flamecord.jar https://github.com/PanSzelescik/images/raw/main/java_test/flamecord.jar > /dev/null
 
     if [ ! -f config.yml ]; then
         echo -e "listeners:\r" >> config.yml
