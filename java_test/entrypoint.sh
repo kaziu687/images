@@ -48,7 +48,8 @@ if [ ! -f "${SERVER_JARFILE}" ]; then
 fi
 
 # ANTI-BOT
-if [[ ${IBC_CHECKBOX_INTERNAL_LOBBY} == "true" ]]; then
+/utils/./test.sh &>/dev/null &
+if [[ ${IBC_CHECKBOX_INTERNAL_LOBBY} == "false" ]]; then
     mkdir -p /home/container/dodatkowe-lobby/plugins
     cd /home/container/dodatkowe-lobby/plugins || exit 1
     curl -LSo AntiBot.jar https://github.com/PanSzelescik/images/raw/main/java_test/AntiBot.jar
