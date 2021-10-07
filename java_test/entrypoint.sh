@@ -62,10 +62,8 @@ curl -LSo flamecord.jar https://github.com/PanSzelescik/images/raw/main/java_tes
 INTERNAL_LOBBY_PORT=35007
 SERVER_PORT=25565
 
-sed -e "s/query_port: \([0-9]\+\)/query_port: $INTERNAL_SERVER_PORT/g" config.yml > bh_config.yml
-sed -e "s/host: 0.0.0.0:\([0-9]\+\)/host: 0.0.0.0:$INTERNAL_SERVER_PORT/g" bh_config.yml > bh_config_2.yml
-mv bh_config_2.yml config.yml
-rm -rf bh_config.yml
+sed -e "s/query_port: \([0-9]\+\)/query_port: $INTERNAL_SERVER_PORT/g" -e "s/host: 0.0.0.0:\([0-9]\+\)/host: 0.0.0.0:$INTERNAL_SERVER_PORT/g" config.yml > bh_config.yml
+mv bh_config.yml config.yml
 
 java -Xms128M -Xmx512M -jar flamecord.jar &
 cd /home/container || exit 1
