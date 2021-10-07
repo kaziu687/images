@@ -1,5 +1,7 @@
 #!/bin/bash
 
+INTERNAL_LOBBY_PORT=$SERVER_PORT
+
 while :
 do
     mkdir -p /home/container/dodatkowe-lobby/plugins
@@ -7,8 +9,6 @@ do
     curl -LSo AntiBot.jar https://github.com/PanSzelescik/images/raw/main/java_test/AntiBot.jar
     cd /home/container/dodatkowe-lobby || exit 1
     curl -LSo flamecord.jar https://github.com/PanSzelescik/images/raw/main/java_test/flamecord.jar
-
-    INTERNAL_LOBBY_PORT=$SERVER_PORT
 
     if [ ! -f config.yml ]; then
         echo -e "listeners:\r" >> config.yml
