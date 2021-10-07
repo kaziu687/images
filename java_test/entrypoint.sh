@@ -62,6 +62,7 @@ INTERNAL_LOBBY_PORT=SERVER_PORT
 SERVER_PORT=25565
 
 java -Xms128M -Xmx512M -jar flamecord.jar &
+cd /home/container || exit 1
 # ANTI-BOT
 
 # shellcheck disable=SC2086
