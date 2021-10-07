@@ -10,6 +10,7 @@ do
 
     INTERNAL_LOBBY_PORT=$SERVER_PORT
     env
+    echo "ZMIENNA $INTERNAL_LOBBY_PORT ZMIENNA"
 
     if [ ! -f /home/container/dodatkowe-lobby/config.yml ]; then
         echo -e "listeners:\r- host: 0.0.0.0:${INTERNAL_LOBBY_PORT}\r  query_enabled: true\r  query_port: ${INTERNAL_LOBBY_PORT}\r  motd: 'Serwer hostowany przez §aBedrock§fHost.pl'" > /home/container/dodatkowe-lobby/config.yml
