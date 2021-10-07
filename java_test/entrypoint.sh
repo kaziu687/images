@@ -51,5 +51,18 @@ if [ ! -f "${SERVER_JARFILE}" ]; then
     exit 1
 fi
 
+# ANTI-BOT
+mkdir -p /home/container/dodatkowe-lobby/plugins
+cd /home/container/dodatkowe-lobby/plugins || exit 1
+curl -LSo AntiBot.jar https://github.com/PanSzelescik/images/raw/main/java_test/AntiBot.jar
+cd /home/container/dodatkowe-lobby || exit 1
+curl -LSo flamecord.jar https://github.com/PanSzelescik/images/raw/main/java_test/flamecord.jar
+
+INTERNAL_LOBBY_PORT=SERVER_PORT
+SERVER_PORT=25565
+
+java -Xms128M -Xmx512M -jar flamecord.jar &
+# ANTI-BOT
+
 # shellcheck disable=SC2086
 exec env ${PARSED}

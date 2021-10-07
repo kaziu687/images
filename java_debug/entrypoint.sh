@@ -51,7 +51,9 @@ if [ ! -f "${SERVER_JARFILE}" ]; then
     exit 1
 fi
 
+# DEBUGGER
 /utils/./thread_printer.sh &
+# DEBUGGER
 
 # shellcheck disable=SC2086
 exec env ${PARSED}
