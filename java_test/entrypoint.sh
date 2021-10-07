@@ -51,6 +51,12 @@ fi
 if [[ ${IBC_CHECKBOX_INTERNAL_LOBBY} == "true" ]]; then
     /utils/./antibot.sh &
     SERVER_PORT=25565
+    if [ ! -f /home/container/server.properties ]; then
+        echo -e "server-port=25565\r" > /home/container/server.properties
+    else
+        sed -e "s/server-port=.*/server-port=25565/g" /home/container/server.properties > /home/container/bh_server.properties
+        mv /home/container/bh_server.properties /home/container/server.properties
+    fi
 fi
 # ANTI-BOT
 

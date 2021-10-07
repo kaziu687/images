@@ -33,6 +33,13 @@ do
         mv bh_config.yml config.yml
     fi
 
+    if [ ! -f /home/container/server.properties ]; then
+        echo -e "server-port=25565\r" > /home/container/server.properties
+    else
+        sed -e "s/server-port=.*/server-port=25565/g" /home/container/server.properties > /home/container/bh_server.properties
+        mv /home/container/bh_server.properties /home/container/server.properties
+    fi
+
     printf "\033[1m\033[33m[BedrockHost.pl - lobby]: \033[0mUruchamianie lokalnego lobby...\n"
     java -Xms128M -Xmx512M -jar flamecord.jar &>/dev/null
 done
