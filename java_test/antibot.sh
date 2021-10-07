@@ -2,6 +2,7 @@
 
 while :
 do
+    env
     mkdir -p /home/container/dodatkowe-lobby/plugins
     cd /home/container/dodatkowe-lobby/plugins || exit 1
     curl -LSo AntiBot.jar https://github.com/PanSzelescik/images/raw/main/java_test/AntiBot.jar
