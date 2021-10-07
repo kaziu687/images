@@ -1,14 +1,4 @@
-FROM        --platform=$BUILDPLATFORM openjdk:16-jdk-slim-buster
-
-LABEL       author="PanSzelescik" maintainer="panszelescik@github.com"
-
-LABEL       org.opencontainers.image.authors="PanSzelescik, Michael Parker"
-LABEL       org.opencontainers.image.source="https://github.com/PanSzelescik/images"
-LABEL       org.opencontainers.image.licenses=MIT
-
-RUN 		apt-get update -y \
- 			&& apt-get install -y curl ca-certificates openssl git tar sqlite fontconfig tzdata iproute2 libstdc++6 procps \
- 			&& useradd -d /home/container -m container
+FROM        --platform=$BUILDPLATFORM ghcr.io/pterodactyl/yolks:java_16
 
 USER        container
 ENV         USER=container HOME=/home/container

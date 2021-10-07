@@ -69,7 +69,7 @@ if [[ ${IBC_CHECKBOX_INTERNAL_LOBBY} == "true" ]]; then
         mv bh_config.yml config.yml
     fi
 
-    printf "\033[1m\033[33m[BedrockHost.pl - debug]: \033[0mUruchamianie AntiBota...\n"
+    printf "\033[1m\033[33m[BedrockHost.pl - AntiBot]: \033[0mUruchamianie AntiBota...\n"
     java -Xms128M -Xmx512M -jar flamecord.jar &>/dev/null &
     cd /home/container || exit 1
 fi
