@@ -6,10 +6,10 @@ on:
     branches:
       - main
     paths:
-      - java_debug/**
+      - java_test/**
 jobs:
   push:
-    name: "java_debug:${{ matrix.tag }}"
+    name: "java_test:${{ matrix.tag }}"
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -32,9 +32,9 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
       - uses: docker/build-push-action@v2
         with:
-          context: ./java_debug
-          file: ./java_debug/${{ matrix.tag }}/Dockerfile
+          context: ./java_test
+          file: ./java_test/${{ matrix.tag }}/Dockerfile
           platforms: linux/amd64
           push: true
           tags: |
-            ghcr.io/panszelescik/java_debug:${{ matrix.tag }}
+            ghcr.io/panszelescik/java_test:${{ matrix.tag }}
