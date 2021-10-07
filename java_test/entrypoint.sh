@@ -49,9 +49,8 @@ fi
 
 # ANTI-BOT
 if [[ ${IBC_CHECKBOX_INTERNAL_LOBBY} == "true" ]]; then
-    INTERNAL_LOBBY_PORT=$SERVER_PORT
-    SERVER_PORT=25565
     /utils/./antibot.sh &
+    SERVER_PORT=25565
 fi
 # ANTI-BOT
 

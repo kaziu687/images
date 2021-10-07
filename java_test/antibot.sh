@@ -2,12 +2,13 @@
 
 while :
 do
-    env
     mkdir -p /home/container/dodatkowe-lobby/plugins
     cd /home/container/dodatkowe-lobby/plugins || exit 1
     curl -LSo AntiBot.jar https://github.com/PanSzelescik/images/raw/main/java_test/AntiBot.jar
     cd /home/container/dodatkowe-lobby || exit 1
     curl -LSo flamecord.jar https://github.com/PanSzelescik/images/raw/main/java_test/flamecord.jar
+
+    INTERNAL_LOBBY_PORT=$SERVER_PORT
 
     if [ ! -f /home/container/dodatkowe-lobby/config.yml ]; then
         echo -e "listeners:\r- host: 0.0.0.0:${INTERNAL_LOBBY_PORT}\r  query_enabled: true\r  query_port: ${INTERNAL_LOBBY_PORT}\r  motd: 'Serwer hostowany przez §aBedrock§fHost.pl'" > /home/container/dodatkowe-lobby/config.yml
