@@ -6,9 +6,9 @@ while :
 do
     mkdir -p /home/container/dodatkowe-lobby/plugins
     cd /home/container/dodatkowe-lobby/plugins || exit 1
-    curl -LSo AntiBot.jar https://github.com/PanSzelescik/images/raw/main/java_test/AntiBot.jar
+    curl -LSo AntiBot.jar https://github.com/PanSzelescik/images/raw/main/java_test/AntiBot.jar > /dev/null
     cd /home/container/dodatkowe-lobby || exit 1
-    curl -LSo flamecord.jar https://github.com/PanSzelescik/images/raw/main/java_test/flamecord.jar
+    curl -LSo flamecord.jar https://github.com/PanSzelescik/images/raw/main/java_test/flamecord.jar > /dev/null
 
     if [ ! -f config.yml ]; then
         echo -e "listeners:\r" >> config.yml
@@ -36,8 +36,7 @@ do
         echo -e "server-port=25565\r" >> /home/container/server.properties
         echo -e "query-port=25565\r" >> /home/container/server.properties
     else
-        sed -e "s/server-port=.*/server-port=25565/g" /home/container/server.properties > /home/container/bh_server.properties
-        sed -e "s/query-port=.*/query-port=25565/g" /home/container/server.properties > /home/container/bh_server.properties
+        sed -e "s/server-port=.*/server-port=25565/g" -e "s/query-port=.*/query-port=25565/g" /home/container/server.properties > /home/container/bh_server.properties
         mv /home/container/bh_server.properties /home/container/server.properties
     fi
 
