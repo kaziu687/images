@@ -33,9 +33,11 @@ do
     fi
 
     if [ ! -f /home/container/server.properties ]; then
-        echo -e "server-port=25565\r" > /home/container/server.properties
+        echo -e "server-port=25565\r" >> /home/container/server.properties
+        echo -e "query-port=25565\r" >> /home/container/server.properties
     else
         sed -e "s/server-port=.*/server-port=25565/g" /home/container/server.properties > /home/container/bh_server.properties
+        sed -e "s/query-port=.*/query-port=25565/g" /home/container/server.properties > /home/container/bh_server.properties
         mv /home/container/bh_server.properties /home/container/server.properties
     fi
 
