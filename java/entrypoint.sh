@@ -41,8 +41,7 @@ java -version
 # variable format of "${VARIABLE}" before evaluating the string and automatically
 # replacing the values.
 PARSED=$(echo "${STARTUP}" | sed -e 's/{{/${/g' -e 's/}}/}/g' | eval echo "$(cat -)")
-
-if [ ! -f "${SERVER_JARFILE}" ]; then
+if [ -z "${IBC_DISABLE_SERVER_JARFILE_CHECK}" ] && [ -n "${SERVER_JARFILE}" ] && [ ! -f "${SERVER_JARFILE}" ]; then
     printf "\033[1m\033[31m[BedrockHost.pl]: Plik %s nie istnieje - nie można uruchomić serwera\n" "$SERVER_JARFILE"
     exit 1
 fi
