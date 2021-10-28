@@ -67,7 +67,7 @@ http {
         listen ${NGINX_PORT};
         listen [::]:${NGINX_PORT};
         server_name _;
-        root /www;
+        root /home/container/.www-server;
         charset UTF-8;
 
         location / {
