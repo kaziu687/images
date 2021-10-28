@@ -13,5 +13,10 @@ COPY        --from=java /usr/local/openjdk-16 /usr/local/openjdk-16
 ENV         JAVA_HOME /usr/local/openjdk-16
 ENV         PATH $JAVA_HOME/bin:$PATH
 
+COPY        ../nginx.sh /utils/nginx.sh
+RUN         chmod 0755 /utils/nginx.sh
+COPY        ../default.conf.template /etc/nginx/templates/default.conf.template
+ENV         NGINX_PORT 35010
+
 COPY        ./../entrypoint.sh /entrypoint.sh
 CMD         [ "/bin/bash", "/entrypoint.sh" ]
