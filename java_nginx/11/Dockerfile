@@ -10,6 +10,8 @@ ENV         USER=container HOME=/home/container
 WORKDIR     /home/container
 
 COPY        --from=java /usr/local/openjdk-11 /usr/local/openjdk-11
+ENV         JAVA_HOME /usr/local/openjdk-11
+ENV         PATH $JAVA_HOME/bin:$PATH
 
 COPY        ./../entrypoint.sh /entrypoint.sh
 CMD         [ "/bin/bash", "/entrypoint.sh" ]
