@@ -48,7 +48,7 @@ if [ -z "${IBC_DISABLE_SERVER_JARFILE_CHECK}" ] && [ -n "${SERVER_JARFILE}" ] &&
 fi
 
 # NGINX
-if [ -d "/home/container/.serwer-www" ]; then
+if [ -d "/home/container/_serwer-www" ]; then
     printf "\033[1m\033[31m[BedrockHost.pl]: Uruchamianie nginx\n"
     /utils/./nginx.sh &
 else
