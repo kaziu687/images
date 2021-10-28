@@ -12,7 +12,7 @@ ENV         PATH $JAVA_HOME/bin:$PATH
 
 COPY        ../nginx.sh /utils/nginx.sh
 RUN         chmod 0755 /utils/nginx.sh
-COPY        ../default.conf.template /etc/nginx/templates/default.conf.template
+COPY        ../default.conf.template /utils/templates/nginx.conf.template
 ENV         NGINX_PORT 35010
 
 USER        container
