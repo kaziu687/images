@@ -1,8 +1,0 @@
-server {
-    listen ${NGINX_PORT};
-
-    location / {
-        root /home/container/.serwer-www/;
-        autoindex on;
-    }
-}
