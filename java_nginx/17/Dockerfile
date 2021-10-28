@@ -15,6 +15,13 @@ RUN         chmod 0755 /utils/nginx.sh
 COPY        ../default.conf.template /etc/nginx/templates/default.conf.template
 ENV         NGINX_PORT 35010
 
+RUN         chown -R container:container /app && chmod -R 755 /app && \
+            chown -R container:container /var/cache/nginx && \
+            chown -R container:container /var/log/nginx && \
+            chown -R container:container /etc/nginx/conf.d
+RUN         touch /var/run/nginx.pid && \
+            chown -R container:container /var/run/nginx.pid
+
 USER        container
 ENV         USER=container HOME=/home/container
 WORKDIR     /home/container
