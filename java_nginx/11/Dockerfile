@@ -15,6 +15,7 @@ ENV         USER=container HOME=/home/container
 WORKDIR     /home/container
 
 COPY        ../nginx.sh /utils/nginx.sh
+RUN         chmod +x /utils/nginx.sh
 COPY        ../nginx.conf /utils/nginx.conf.template
 
 COPY        ./../entrypoint.sh /entrypoint.sh
