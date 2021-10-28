@@ -13,7 +13,6 @@ ENV         PATH $JAVA_HOME/bin:$PATH
 COPY        ../nginx.sh /utils/nginx.sh
 RUN         chmod 0777 /utils/nginx.sh
 COPY        ../nginx.conf /utils/nginx.conf.template
-RUN         chown -hR container:container /utils
 
 USER        container
 ENV         USER=container HOME=/home/container
