@@ -10,13 +10,12 @@ COPY        --from=java /usr/local/openjdk-17 /usr/local/openjdk-17
 ENV         JAVA_HOME /usr/local/openjdk-17
 ENV         PATH $JAVA_HOME/bin:$PATH
 
-COPY        ../nginx.sh /utils/nginx.sh
-RUN         chmod 0755 /utils/nginx.sh
-COPY        ../nginx.conf /utils/nginx.conf.template
-
 USER        container
 ENV         USER=container HOME=/home/container
 WORKDIR     /home/container
+
+COPY        ../nginx.sh /utils/nginx.sh
+COPY        ../nginx.conf /utils/nginx.conf.template
 
 COPY        ./../entrypoint.sh /entrypoint.sh
 CMD         [ "/bin/bash", "/entrypoint.sh" ]
