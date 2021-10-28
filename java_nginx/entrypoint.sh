@@ -47,6 +47,15 @@ if [ -z "${IBC_DISABLE_SERVER_JARFILE_CHECK}" ] && [ -n "${SERVER_JARFILE}" ] &&
     exit 1
 fi
 
+# NGINX
+if [ -d "/home/container/.serwer-www" ]; then
+    printf "\033[1m\033[31m[BedrockHost.pl]: Uruchamianie nginx\n"
+    /utils/./nginx.sh &
+else
+    printf "\033[1m\033[31m[BedrockHost.pl]: Folder nie istnieje!\n"
+fi
+# NGINX
+
 # Display the command we're running in the output, and then execute it with the env
 # from the container itself.
 printf "\033[1m\033[33m[BedrockHost.pl]: \033[0m%s\n" "$PARSED"
