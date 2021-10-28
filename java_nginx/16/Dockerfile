@@ -12,8 +12,7 @@ ENV         PATH $JAVA_HOME/bin:$PATH
 
 COPY        ../nginx.sh /utils/nginx.sh
 RUN         chmod 0755 /utils/nginx.sh
-COPY        ../nginx.conf /utils/nginx.conf
-COPY        ../server.conf /utils/conf.d/server.conf
+COPY        ../nginx.conf /utils/nginx.conf.template
 
 USER        container
 ENV         USER=container HOME=/home/container
