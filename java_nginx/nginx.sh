@@ -26,5 +26,5 @@ fi
 sed -i "s/{PORT}/$port/g" /tmp/nginx.conf
 
 printf "\033[1m\033[33m[Serwer WWW]: \033[0mUruchamianie serwera na porcie %s...\033[0m\n" "$port"
-nginx -t
+nginx -c '/tmp/nginx.conf' -t
 nginx -c '/tmp/nginx.conf' -g 'daemon off;'
