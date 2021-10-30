@@ -10,7 +10,7 @@ COPY        --from=java /usr/local/openjdk-8 /usr/local/openjdk-8
 ENV         JAVA_HOME /usr/local/openjdk-8
 ENV         PATH $JAVA_HOME/bin:$PATH
 
-COPY        ../../nginx.sh /utils/nginx.sh
+COPY        ../nginx.sh /utils/nginx.sh
 RUN         chmod 0777 /utils/nginx.sh
 COPY        ../nginx.conf /utils/nginx.conf.template
 
