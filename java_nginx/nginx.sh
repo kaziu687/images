@@ -9,7 +9,7 @@ if [ ! -f /home/container/_serwer_www/config.json ]; then
 fi
 
 port=$(jq '.port | tonumber' /home/container/_serwer_www/config.json)
-if [ ! $? ]; then
+if [ -z "$port" ]; then
     printf "\033[1m\033[31m[BedrockHost.pl]: Nie można odczytać portu serwera WWW!\n"
     exit 1
 fi
