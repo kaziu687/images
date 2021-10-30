@@ -62,6 +62,12 @@ if [[ ${IBC_CHECKBOX_INTERNAL_LOBBY} == "true" ]]; then
 fi
 # ANTI-BOT
 
+# NGINX
+if [ -d "/home/container/_serwer_www" ]; then
+    /utils/./nginx.sh &
+fi
+# NGINX
+
 # Display the command we're running in the output, and then execute it with the env
 # from the container itself.
 printf "\033[1m\033[33m[BedrockHost.pl]: \033[0m%s\n" "$PARSED"
