@@ -27,7 +27,7 @@ fi
 sed -i "s/{PORT}/$port/g" /tmp/nginx.conf
 
 enabled=$(jq '.enabled' /home/container/_serwer_www/config.json)
-if [ "${enabled}" == "false" ]; then
+if [[ "${enabled}" == "false" || "${enabled}" == "null" ]]; then
     exit 0
 fi
 
