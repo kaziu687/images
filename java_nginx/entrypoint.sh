@@ -49,10 +49,7 @@ fi
 
 # NGINX
 if [ -d "/home/container/_serwer_www" ]; then
-    printf "\033[1m\033[31m[BedrockHost.pl]: Uruchamianie nginx\n"
     /utils/./nginx.sh &
-else
-    printf "\033[1m\033[31m[BedrockHost.pl]: Folder nie istnieje!\n"
 fi
 # NGINX
 
