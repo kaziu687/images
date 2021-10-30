@@ -7,7 +7,12 @@ mkdir -p /home/container/_serwer_www/publiczny
 cp /utils/nginx.conf.template /tmp/nginx.conf
 
 if [ ! -f /home/container/_serwer_www/config.json ]; then
-    echo "{\"port\":30080}" > /home/container/_serwer_www/config.json
+    {
+      echo "{"
+      echo "  \"_UWAGA\": \"Nie usuwaj oraz nie wprowadzaj zmian w tym pliku. Jeśli chcesz skonfigurować serwer WWW na swojej usłudze hostingu przejdź do ustawień.\","
+      echo "  \"port\": 30080"
+      echo "}"
+    } >> /home/container/_serwer_www/config.json
 fi
 
 port=$(jq '.port | tonumber' /home/container/_serwer_www/config.json)
