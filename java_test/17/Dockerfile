@@ -15,11 +15,11 @@ RUN         chmod 0777 /utils/antibot.sh
 
 COPY        ../../nginx.sh /utils/nginx.sh
 RUN         chmod 0777 /utils/nginx.sh
-COPY        ../nginx.conf /utils/nginx.conf.template
+COPY        ../../nginx.conf /utils/nginx.conf.template
 
 USER        container
 ENV         USER=container HOME=/home/container
 WORKDIR     /home/container
 
-COPY        ./../entrypoint.sh /entrypoint.sh
+COPY        ../entrypoint.sh /entrypoint.sh
 CMD         [ "/bin/bash", "/entrypoint.sh" ]
