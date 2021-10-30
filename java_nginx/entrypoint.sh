@@ -34,7 +34,7 @@ export INTERNAL_IP
 cd /home/container || exit 1
 
 # Print Java version
-printf "\033[1m\033[33m[BedrockHost.pl]: \033[0mjava -version\n"
+printf "\033[1m\033[33m[BedrockHost.pl]: \033[0mjava -version\033[0m\n"
 java -version
 
 # Convert all of the "{{VARIABLE}}" parts of the command into the expected shell
@@ -43,7 +43,7 @@ java -version
 PARSED=$(echo "${STARTUP}" | sed -e 's/{{/${/g' -e 's/}}/}/g' | eval echo "$(cat -)")
 
 if [ -z "${IBC_DISABLE_SERVER_JARFILE_CHECK}" ] && [ -n "${SERVER_JARFILE}" ] && [ ! -f "${SERVER_JARFILE}" ]; then
-    printf "\033[1m\033[31m[BedrockHost.pl]: Plik %s nie istnieje - nie można uruchomić serwera\n" "$SERVER_JARFILE"
+    printf "\033[1m\033[31m[BedrockHost.pl]: Plik %s nie istnieje - nie można uruchomić serwera\033[0m\n" "$SERVER_JARFILE"
     exit 1
 fi
 
@@ -55,7 +55,7 @@ fi
 
 # Display the command we're running in the output, and then execute it with the env
 # from the container itself.
-printf "\033[1m\033[33m[BedrockHost.pl]: \033[0m%s\n" "$PARSED"
+printf "\033[1m\033[33m[BedrockHost.pl]: \033[0m%s\033[0m\n" "$PARSED"
 
 # shellcheck disable=SC2086
 exec env ${PARSED}
