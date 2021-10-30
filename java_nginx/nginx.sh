@@ -9,7 +9,11 @@ if [ ! -f /home/container/_serwer_www/config.json ]; then
 fi
 
 port=$(jq '.port | tonumber' /home/container/_serwer_www/config.json)
+if [ ! $? ]; then
+    printf "\033[1m\033[31m[BedrockHost.pl]: Nie można odczytać portu serwera WWW!\n"
+    exit 1
+fi
 sed -i "s/{PORT}/$port/g" /tmp/nginx.conf
 
-printf "\033[1m\033[33m[BedrockHost.pl]: \033[0mUruchamianie serwera www na porcie %s...\n" "$port"
+printf "\033[1m\033[33m[BedrockHost.pl]: \033[0mUruchamianie serwera WWW na porcie %s...\n" "$port"
 nginx -c '/tmp/nginx.conf' -g 'daemon off;'
