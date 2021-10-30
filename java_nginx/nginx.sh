@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# TODO: Remove
+printf "\033[1m\033[31m[Serwer WWW]: UWAGA: Funkcjonalność serwera WWW jest jeszcze w trakcie testów i może nie działać prawidłowo\033[0m\n"
 mkdir -p /home/container/_serwer_www/publiczny
 
 cp /utils/nginx.conf.template /tmp/nginx.conf
