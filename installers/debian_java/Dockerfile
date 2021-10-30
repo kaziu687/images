@@ -20,8 +20,8 @@
 # SOFTWARE.
 #
 
-FROM --platform=$BUILDPLATFORM adoptopenjdk/openjdk8:debianslim-jre AS java8
-FROM --platform=$BUILDPLATFORM adoptopenjdk/openjdk16:debianslim-jre AS java16
+FROM --platform=$BUILDPLATFORM openjdk:8-slim AS java8
+FROM --platform=$BUILDPLATFORM openjdk:16-slim AS java16
 FROM --platform=$BUILDPLATFORM debian:bullseye-slim
 
 LABEL author="PanSzelescik" maintainer="panszelescik@github.com"
@@ -32,8 +32,8 @@ LABEL org.opencontainers.image.licenses=MIT
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-COPY --from=java8 /opt/java/openjdk /opt/java/openjdk8
-COPY --from=java16 /opt/java/openjdk /opt/java/openjdk16
+COPY --from=java8 /usr/local/openjdk-8 /opt/java/openjdk8
+COPY --from=java16 /usr/local/openjdk-16 /opt/java/openjdk16
 
 RUN dpkg --add-architecture i386 \
     && apt update \
