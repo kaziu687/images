@@ -53,6 +53,7 @@ if [ -d "/home/container/_bedrockhost" ]; then
 fi
 # BEDROCKHOST UTILS
 
+
 # Display the command we're running in the output, and then execute it with the env
 # from the container itself.
 printf "\033[1m\033[33m[BedrockHost.pl]: \033[0m%s\033[0m\n" "$PARSED"
