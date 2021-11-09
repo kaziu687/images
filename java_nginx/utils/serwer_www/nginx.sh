@@ -14,8 +14,8 @@ default_serwer_www="{\"_UWAGA\":\"Nie usuwaj oraz nie wprowadzaj zmian w tym pli
 if [ ! -f "$config_path" ]; then # Jeśli nie ma pliku - utwórz go z domyślnymi ustawieniami serwera WWW
     jq -n --argjson serwer_www "$default_serwer_www" '. + serwer_www:$serwer_www' > $config_path
 elif [ "$(jq '.serwer_www|type=="object"' "$config_path")" == "false" ]; then # Jeśli plik jest, ale serwer_www nie jest obiektem, dodaj do jsona domyślne ustawienia serwera WWW
-    jq --argjson serwer_www "$default_serwer_www" '. + serwer_www:$serwer_www' $config_path > /tmp/serwer_www.json
-    cp /tmp/serwer_www.json $config_path
+    jq --argjson serwer_www "$default_serwer_www" '. + {serwer_www:$serwer_www}' $config_path > /tmp/serwer_www.json
+    mv /tmp/serwer_www.json "$config_path"
 fi
 
 port=$(jq '.serwer_www.port | tonumber' "$config_path")
