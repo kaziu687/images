@@ -49,7 +49,7 @@ fi
 
 # BEDROCKHOST UTILS
 if [ -d "/home/container/_bedrockhost" ]; then
-    /utils/./bedrockhost_utils.sh &
+    /utils/./main.sh &
 fi
 # BEDROCKHOST UTILS
 
