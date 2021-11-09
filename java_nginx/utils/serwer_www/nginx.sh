@@ -10,7 +10,7 @@ mkdir -p $serwer_www_path/publiczny
 cp /utils/nginx.conf.template /tmp/nginx.conf
 
 if [ "$(jq '.serwer_www|type=="object"' "$config_path")" == "false" ]; then # Jeśli serwer_www nie jest obiektem, dodaj do jsona domyślne ustawienia serwera WWW
-    jq --argjson serwer_www "$default_serwer_www" '. + {serwer_www:$serwer_www}' $config_path > /tmp/serwer_www.json
+    jq -S --argjson serwer_www "$default_serwer_www" '. + {serwer_www:$serwer_www}' $config_path > /tmp/serwer_www.json
     mv /tmp/serwer_www.json "$config_path"
 fi
 
