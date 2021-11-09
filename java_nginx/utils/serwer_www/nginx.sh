@@ -1,5 +1,6 @@
 #!/bin/bash
 
+config_path="/home/container/_bedrockhost/config.json"
 serwer_www_path="/home/container/_bedrockhost/serwer_www"
 
 # TODO: Remove
@@ -8,7 +9,7 @@ mkdir -p $serwer_www_path/publiczny
 
 cp /utils/nginx.conf.template /tmp/nginx.conf
 
-if [ ! -f "$serwer_www_path/config.json" ]; then
+if [ ! -f "$config_path" ]; then
     {
       echo "{"
       echo "  \"serwer_www\": {"
@@ -17,10 +18,10 @@ if [ ! -f "$serwer_www_path/config.json" ]; then
       echo "    \"enabled\": true"
       echo "  }"
       echo "}"
-    } >> "$serwer_www_path/config.json"
+    } >> "$config_path"
 fi
 
-port=$(jq '.port | tonumber' "$serwer_www_path/config.json")
+port=$(jq '.serwer_www.port | tonumber' "$config_path")
 if [[ -z "$port" || ${port} == 30080 ]]; then
     printf "\033[1m\033[31m[Serwer WWW]: Port serwera nie został prawidłowo ustawiony, więc nie został on uruchomiony\033[0m\n"
     printf "\033[1m\033[31m[Serwer WWW]: Konfigurację serwera WWW znajdziesz w ustawieniach usługi\033[0m\n"
@@ -30,7 +31,7 @@ if [[ -z "$port" || ${port} == 30080 ]]; then
 fi
 sed -i "s/{PORT}/$port/g" /tmp/nginx.conf
 
-enabled=$(jq '.enabled' "$serwer_www_path/config.json")
+enabled=$(jq '.serwer_www.enabled' "$config_path")
 if [[ "${enabled}" == "false" || "${enabled}" == "null" ]]; then
     exit 0
 fi
