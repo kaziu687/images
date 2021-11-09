@@ -8,12 +8,18 @@ mkdir -p $serwer_www_path/publiczny
 
 cp /utils/nginx.conf.template /tmp/nginx.conf
 
-default_serwer_www="{\"_UWAGA\":\"Nie usuwaj oraz nie wprowadzaj zmian w tym pliku. Jeśli chcesz skonfigurować serwer WWW na swojej usłudze hostingu przejdź do ustawień.\",\"port\":30080,\"enabled\":true}"
+uwaga="Nie usuwaj oraz nie wprowadzaj zmian w tym pliku. Jeśli chcesz skonfigurować serwer WWW na swojej usłudze hostingu przejdź do ustawień."
+default_serwer_www="{\"port\":30080,\"enabled\":true}"
 
 if [ ! -f "$config_path" ]; then # Jeśli nie ma pliku - utwórz go z domyślnymi ustawieniami serwera WWW
     jq -n --argjson serwer_www "$default_serwer_www" '. + serwer_www:$serwer_www' > $config_path
 elif [ "$(jq '.serwer_www|type=="object"' "$config_path")" == "false" ]; then # Jeśli plik jest, ale serwer_www nie jest obiektem, dodaj do jsona domyślne ustawienia serwera WWW
     jq --argjson serwer_www "$default_serwer_www" '. + {serwer_www:$serwer_www}' $config_path > /tmp/serwer_www.json
+    mv /tmp/serwer_www.json "$config_path"
+fi
+
+if [ "$(jq '._UWAGA' "$config_path")" != "$uwaga" ]; then
+    jq --arg uwaga "$uwaga" '. + {_UWAGA:$uwaga}' $config_path > /tmp/serwer_www.json
     mv /tmp/serwer_www.json "$config_path"
 fi
 
