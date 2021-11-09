@@ -10,15 +10,8 @@ mkdir -p $serwer_www_path/publiczny
 cp /utils/nginx.conf.template /tmp/nginx.conf
 
 if [ ! -f "$config_path" ]; then
-    {
-      echo "{"
-      echo "  \"serwer_www\": {"
-      echo "    \"_UWAGA\": \"Nie usuwaj oraz nie wprowadzaj zmian w tym pliku. Jeśli chcesz skonfigurować serwer WWW na swojej usłudze hostingu przejdź do ustawień.\","
-      echo "    \"port\": 30080,"
-      echo "    \"enabled\": true"
-      echo "  }"
-      echo "}"
-    } >> "$config_path"
+    default_www_config="{\"_UWAGA\":\"Nie usuwaj oraz nie wprowadzaj zmian w tym pliku. Jeśli chcesz skonfigurować serwer WWW na swojej usłudze hostingu przejdź do ustawień.\",\"port\":30080,\"enabled\":true}"
+    jq -n --arg default_www_config "$default_www_config" '{"serwer_www":$default_www_config}' > $config_path
 fi
 
 port=$(jq '.serwer_www.port | tonumber' "$config_path")
