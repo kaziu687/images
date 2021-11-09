@@ -12,7 +12,6 @@ jobs:
     name: "installers:${{ matrix.tag }}"
     runs-on: ubuntu-latest
     strategy:
-      max-parallel: 1
       fail-fast: false
       matrix:
         tag:
