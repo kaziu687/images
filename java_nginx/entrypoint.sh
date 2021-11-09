@@ -47,11 +47,11 @@ if [ -z "${IBC_DISABLE_SERVER_JARFILE_CHECK}" ] && [ -n "${SERVER_JARFILE}" ] &&
     exit 1
 fi
 
-# NGINX
-if [ -d "/home/container/_serwer_www" ]; then
-    /utils/./nginx.sh &
+# BEDROCKHOST UTILS
+if [ -d "/home/container/_bedrockhost" ]; then
+    /utils/./bedrockhost_utils.sh &
 fi
-# NGINX
+# BEDROCKHOST UTILS
 
 # Display the command we're running in the output, and then execute it with the env
 # from the container itself.

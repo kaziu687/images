@@ -10,9 +10,12 @@ COPY        --from=java /usr/local/openjdk-8 /usr/local/openjdk-8
 ENV         JAVA_HOME /usr/local/openjdk-8
 ENV         PATH $JAVA_HOME/bin:$PATH
 
-COPY        ../nginx.sh /utils/nginx.sh
-RUN         chmod 0777 /utils/nginx.sh
-COPY        ../nginx.conf /utils/nginx.conf.template
+COPY        ../utils/bedrockhost_utils.sh /utils/bedrockhost_utils.sh
+RUN         chmod 0777 /utils/bedrockhost_utils.sh
+
+COPY        ../utils/serwer_www/nginx.sh /utils/serwer_www.sh
+RUN         chmod 0777 /utils/serwer_www.sh
+COPY        ../utils/serwer_www/nginx.conf /utils/nginx.conf.template
 
 USER        container
 ENV         USER=container HOME=/home/container

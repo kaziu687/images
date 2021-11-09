@@ -1,22 +1,26 @@
 #!/bin/bash
 
+serwer_www_path="/home/container/_bedrockhost/serwer_www"
+
 # TODO: Remove
 printf "\033[1m\033[31m[Serwer WWW]: UWAGA: Funkcjonalność serwera WWW jest jeszcze w trakcie testów i może nie działać prawidłowo\033[0m\n"
-mkdir -p /home/container/_serwer_www/publiczny
+mkdir -p $serwer_www_path/publiczny
 
 cp /utils/nginx.conf.template /tmp/nginx.conf
 
-if [ ! -f /home/container/_serwer_www/config.json ]; then
+if [ ! -f "$serwer_www_path/config.json" ]; then
     {
       echo "{"
-      echo "  \"_UWAGA\": \"Nie usuwaj oraz nie wprowadzaj zmian w tym pliku. Jeśli chcesz skonfigurować serwer WWW na swojej usłudze hostingu przejdź do ustawień.\","
-      echo "  \"port\": 30080,"
-      echo "  \"enabled\": true"
+      echo "  \"serwer_www\": {"
+      echo "    \"_UWAGA\": \"Nie usuwaj oraz nie wprowadzaj zmian w tym pliku. Jeśli chcesz skonfigurować serwer WWW na swojej usłudze hostingu przejdź do ustawień.\","
+      echo "    \"port\": 30080,"
+      echo "    \"enabled\": true"
+      echo "  }"
       echo "}"
-    } >> /home/container/_serwer_www/config.json
+    } >> "$serwer_www_path/config.json"
 fi
 
-port=$(jq '.port | tonumber' /home/container/_serwer_www/config.json)
+port=$(jq '.port | tonumber' "$serwer_www_path/config.json")
 if [[ -z "$port" || ${port} == 30080 ]]; then
     printf "\033[1m\033[31m[Serwer WWW]: Port serwera nie został prawidłowo ustawiony, więc nie został on uruchomiony\033[0m\n"
     printf "\033[1m\033[31m[Serwer WWW]: Konfigurację serwera WWW znajdziesz w ustawieniach usługi\033[0m\n"
@@ -26,7 +30,7 @@ if [[ -z "$port" || ${port} == 30080 ]]; then
 fi
 sed -i "s/{PORT}/$port/g" /tmp/nginx.conf
 
-enabled=$(jq '.enabled' /home/container/_serwer_www/config.json)
+enabled=$(jq '.enabled' "$serwer_www_path/config.json")
 if [[ "${enabled}" == "false" || "${enabled}" == "null" ]]; then
     exit 0
 fi
