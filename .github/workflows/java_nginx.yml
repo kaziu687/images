@@ -1,7 +1,5 @@
 name: Build Java Nginx
 on:
-  schedule:
-    - cron: "0 4 * * 2"
   push:
     branches:
       - main

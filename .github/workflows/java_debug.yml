@@ -1,7 +1,5 @@
 name: Build Java Debug
 on:
-  schedule:
-    - cron: "0 2 * * 2"
   push:
     branches:
       - main
