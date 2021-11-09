@@ -2,27 +2,19 @@
 
 config_path="/home/container/_bedrockhost/config.json"
 serwer_www_path="/home/container/_bedrockhost/serwer_www"
-
-printf "\033[1m\033[31m[Serwer WWW]: UWAGA: Funkcjonalność serwera WWW jest jeszcze w trakcie testów i może nie działać prawidłowo\033[0m\n"
-mkdir -p $serwer_www_path/publiczny
-
-cp /utils/nginx.conf.template /tmp/nginx.conf
-
-uwaga="Nie usuwaj oraz nie wprowadzaj zmian w tym pliku. Jeśli chcesz skonfigurować serwer WWW na swojej usłudze hostingu przejdź do ustawień."
 default_serwer_www="{\"port\":30080,\"enabled\":true}"
 
-if [ ! -f "$config_path" ]; then # Jeśli nie ma pliku - utwórz go z domyślnymi ustawieniami serwera WWW
-    jq -n --argjson serwer_www "$default_serwer_www" '. + serwer_www:$serwer_www' > $config_path
-elif [ "$(jq '.serwer_www|type=="object"' "$config_path")" == "false" ]; then # Jeśli plik jest, ale serwer_www nie jest obiektem, dodaj do jsona domyślne ustawienia serwera WWW
+printf "\033[1m\033[31m[Serwer WWW]: UWAGA: Funkcjonalność serwera WWW jest jeszcze w trakcie testów i może nie działać prawidłowo\033[0m\n"
+
+mkdir -p $serwer_www_path/publiczny
+cp /utils/nginx.conf.template /tmp/nginx.conf
+
+if [ "$(jq '.serwer_www|type=="object"' "$config_path")" == "false" ]; then # Jeśli serwer_www nie jest obiektem, dodaj do jsona domyślne ustawienia serwera WWW
     jq --argjson serwer_www "$default_serwer_www" '. + {serwer_www:$serwer_www}' $config_path > /tmp/serwer_www.json
     mv /tmp/serwer_www.json "$config_path"
 fi
 
-if [ "$(jq '._UWAGA' "$config_path")" != "$uwaga" ]; then
-    jq --arg uwaga "$uwaga" '. + {_UWAGA:$uwaga}' $config_path > /tmp/serwer_www.json
-    mv /tmp/serwer_www.json "$config_path"
-fi
-
+# PORT
 port=$(jq '.serwer_www.port | tonumber' "$config_path")
 if [[ -z "$port" || $port == 30080 ]]; then
     printf "\033[1m\033[31m[Serwer WWW]: Port serwera nie został prawidłowo ustawiony, więc nie został on uruchomiony\033[0m\n"
@@ -32,11 +24,14 @@ if [[ -z "$port" || $port == 30080 ]]; then
     exit 1
 fi
 sed -i "s/{PORT}/$port/g" /tmp/nginx.conf
+# PORT
 
+# ENABLED
 enabled=$(jq '.serwer_www.enabled' "$config_path")
 if [[ -z "$enabled" || "$enabled" == "false" || "$enabled" == "null" ]]; then
     exit 0
 fi
+# ENABLED
 
 printf "\033[1m\033[33m[Serwer WWW]: \033[0mUruchamianie serwera na porcie %s...\033[0m\n" "$port"
 nginx -c '/tmp/nginx.conf' -t
