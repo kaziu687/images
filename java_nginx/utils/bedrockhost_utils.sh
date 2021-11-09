@@ -1,3 +1,5 @@
+#!/bin/bash
+
 settings_path="/home/container/_bedrockhost"
 
 # SERWER WWW
