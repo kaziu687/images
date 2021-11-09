@@ -11,7 +11,7 @@ cp /utils/nginx.conf.template /tmp/nginx.conf
 
 if [ ! -f "$config_path" ]; then
     default_www_config="{\"_UWAGA\":\"Nie usuwaj oraz nie wprowadzaj zmian w tym pliku. Jeśli chcesz skonfigurować serwer WWW na swojej usłudze hostingu przejdź do ustawień.\",\"port\":30080,\"enabled\":true}"
-    jq -n ---argjson default_www_config "$default_www_config" '{"serwer_www":$default_www_config}' > $config_path
+    jq -n --argjson default_www_config "$default_www_config" '{"serwer_www":$default_www_config}' > $config_path
 fi
 
 port=$(jq '.serwer_www.port | tonumber' "$config_path")
