@@ -9,6 +9,9 @@ if [ -f "$settings_path" ]; then
 elif [ "$(jq '._UWAGA' "$config_path")" != "$uwaga" ]; then
     jq -S --arg uwaga "$uwaga" '. + {_UWAGA:$uwaga}' $config_path > /tmp/bh_config.json
     mv /tmp/bh_config.json "$config_path"
+else
+    jq -S '.' $config_path > /tmp/bh_config.json
+    mv /tmp/bh_config.json "$config_path"
 fi
 
 ### MODULES
