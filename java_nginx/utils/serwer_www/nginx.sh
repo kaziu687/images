@@ -3,6 +3,7 @@
 config_path="/home/container/_bedrockhost/config.json"
 serwer_www_path="/home/container/_bedrockhost/serwer_www"
 
+# TODO: Remove
 printf "\033[1m\033[31m[Serwer WWW]: UWAGA: Funkcjonalność serwera WWW jest jeszcze w trakcie testów i może nie działać prawidłowo\033[0m\n"
 mkdir -p $serwer_www_path/publiczny
 
