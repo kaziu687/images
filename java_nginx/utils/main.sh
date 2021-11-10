@@ -2,7 +2,7 @@
 
 settings_path="/home/container/_bedrockhost"
 config_path="$settings_path/config.json"
-uwaga="Nie usuwaj oraz nie wprowadzaj zmian w tym pliku. Jeśli chcesz skonfigurować serwer WWW na swojej usłudze hostingu przejdź do ustawień."
+uwaga="Nie usuwaj tego pliku oraz nie wprowadzaj w nim zmian. Ten plik jest generowany automatycznie. Jeśli chcesz skonfigurować swoją usługę użyj menu 'ustawienia'. Zmiany wprowadzane ręcznie mogą spowodować nieprawidłowe działanie Twojego serwera."
 
 if [ -f "$settings_path" ]; then
     jq -nS --arg uwaga "$uwaga" '. + {_UWAGA:$uwaga}' > $config_path
