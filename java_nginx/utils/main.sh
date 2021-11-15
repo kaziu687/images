@@ -9,6 +9,7 @@ if [ ! -f "$config_path" ]; then
     jq -nS --arg uwaga "$uwaga" '. + {_UWAGA:$uwaga}' > $config_path
 elif [ "$(jq '._UWAGA' "$config_path")" != "$uwaga" ]; then
     echo "Uwaga sie nie zgadza"
+    jq '._UWAGA' "$config_path"
     jq -S --arg uwaga "$uwaga" '. + {_UWAGA:$uwaga}' $config_path > /tmp/bh_config.json
     mv /tmp/bh_config.json "$config_path"
 else
