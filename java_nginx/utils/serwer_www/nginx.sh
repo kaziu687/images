@@ -15,6 +15,7 @@ if [ "$(jq '.serwer_www|type=="object"' "$config_path")" == "false" ]; then # Je
     echo "To nie jest obiekt"
     jq '.serwer_www|type=="object"' "$config_path"
 
+
     jq -S --argjson serwer_www "$default_serwer_www" '. + {serwer_www:$serwer_www}' $config_path > /tmp/serwer_www.json
     mv /tmp/serwer_www.json "$config_path"
 fi
