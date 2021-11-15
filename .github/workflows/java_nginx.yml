@@ -4,7 +4,7 @@ on:
     branches:
       - main
     paths:
-      - java/**
+      - java_nginx/**
 jobs:
   push:
     name: "java_nginx:${{ matrix.tag }}"
