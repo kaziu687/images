@@ -1,8 +1,10 @@
 #!/bin/bash
 
-config_path="/home/container/_bedrockhost/config.json"
-serwer_www_path="/home/container/_bedrockhost/serwer_www"
+bh_path="/home/container/_bedrockhost"
+config_path="$bh_path/config.json"
+serwer_www_path="$bh_path/serwer_www"
 default_serwer_www="{\"port\":30080,\"enabled\":true}"
+nginx_config="/tmp/nginx.conf"
 
 printf "\033[1m\033[31m[Serwer WWW]: UWAGA: Funkcjonalność serwera WWW jest jeszcze w trakcie testów i może nie działać prawidłowo\033[0m\n"
 
@@ -30,5 +32,5 @@ if [[ -z "$enabled" || "$enabled" == "false" || "$enabled" == "null" ]]; then
 fi
 
 printf "\033[1m\033[33m[Serwer WWW]: \033[0mUruchamianie serwera na porcie %s...\033[0m\n" "$port"
-nginx -c '/tmp/nginx.conf' -t
-nginx -c '/tmp/nginx.conf' -g 'daemon off;'
+nginx -c $nginx_config -t
+nginx -c $nginx_config -g 'daemon off;'

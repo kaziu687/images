@@ -4,9 +4,9 @@ settings_path="/home/container/_bedrockhost"
 config_path="$settings_path/config.json"
 uwaga="Nie usuwaj tego pliku oraz nie wprowadzaj w nim zmian. Ten plik jest generowany automatycznie. Jeśli chcesz skonfigurować swoją usługę użyj menu 'ustawienia'. Zmiany wprowadzane ręcznie mogą spowodować nieprawidłowe działanie Twojego serwera."
 
-if [ ! -f "$settings_path" ]; then
+if [ ! -f "$config_path" ]; then
     jq -nS --arg uwaga "$uwaga" '. + {_UWAGA:$uwaga}' > $config_path
-elif [ "$(jq '._UWAGA' "$config_path")" != "$uwaga" ]; then
+elif [ "$(jq '._UWAGA' "$config_path")" != "\"$uwaga\"" ]; then
     jq -S --arg uwaga "$uwaga" '. + {_UWAGA:$uwaga}' $config_path > /tmp/bh_config.json
     mv /tmp/bh_config.json "$config_path"
 else
