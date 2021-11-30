@@ -22,6 +22,7 @@
 
 FROM --platform=$BUILDPLATFORM openjdk:8-slim AS java8
 FROM --platform=$BUILDPLATFORM openjdk:16-slim AS java16
+FROM --platform=$BUILDPLATFORM openjdk:17-slim AS java17
 FROM --platform=$BUILDPLATFORM debian:bullseye-slim
 
 LABEL author="PanSzelescik" maintainer="panszelescik@github.com"
@@ -34,6 +35,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 COPY --from=java8 /usr/local/openjdk-8 /opt/java/openjdk8
 COPY --from=java16 /usr/local/openjdk-16 /opt/java/openjdk16
+COPY --from=java17 /usr/local/openjdk-17 /opt/java/openjdk17
 
 RUN dpkg --add-architecture i386 \
     && apt update \
@@ -43,4 +45,5 @@ RUN dpkg --add-architecture i386 \
     && locale-gen en_US.UTF-8
 
 RUN update-alternatives --install /usr/bin/java java /opt/java/openjdk8/bin/java 100 \
-    && update-alternatives --install /usr/bin/java16 java16 /opt/java/openjdk16/bin/java 100
+    && update-alternatives --install /usr/bin/java16 java16 /opt/java/openjdk16/bin/java 100 \
+    && update-alternatives --install /usr/bin/java17 java17 /opt/java/openjdk17/bin/java 100
